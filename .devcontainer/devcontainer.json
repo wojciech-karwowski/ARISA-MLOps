@@ -1,16 +1,8 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/debian
 {
 	"name": "ARISA-MLOps-devcontainer",
-	"image": "ghcr.io/devexpgbb/mlflow-codespaces/devcontainer-base:latest",
-	// "features": {
-	// 	"ghcr.io/devcontainers/features/python:1": {
-	// 		"installTools": true,
-	// 		"version": "3.11"
-	// 	}
-	// },
-	
+	"image": "mcr.microsoft.com/devcontainers/python:3.11-bullseye",
 
+	"postCreateCommand": "pip install --no-cache-dir mlflow==2.12.1",
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [5000, 8080],
 
