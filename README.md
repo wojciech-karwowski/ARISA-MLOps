@@ -14,6 +14,10 @@ In the VS Code terminal run the following to create a new python virtual environ
 ```
 py -3.11 -m venv .venv
 ```
+windows
+```
+.\.venv\Scripts\activate
+```
 mac or linux  
 ```
 source .venv/bin/activate
