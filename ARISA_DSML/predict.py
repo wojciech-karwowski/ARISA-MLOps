@@ -5,9 +5,8 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from loguru import logger
 import shap
-import joblib
 import os
-from ARISA_DSML.config import FIGURES_DIR, MODELS_DIR, target, PROCESSED_DATA_DIR, categorical, MODEL_NAME
+from ARISA_DSML.config import FIGURES_DIR, MODELS_DIR, target, PROCESSED_DATA_DIR, MODEL_NAME
 from ARISA_DSML.resolve import get_model_by_alias
 import mlflow
 from mlflow.client import MlflowClient

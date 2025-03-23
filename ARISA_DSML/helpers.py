@@ -16,11 +16,12 @@ def get_git_commit_hash():
     try:
         # Run git command in the notebooks directory
         commit_hash = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], 
+            ["git", "rev-parse", "HEAD"],
             cwd="..",  # Move up from the 'notebooks' folder to the repo root
             stderr=subprocess.DEVNULL
         ).decode("utf-8").strip()
         return commit_hash
-    
+
     except subprocess.CalledProcessError:
         return None  # Not a git repository or error occurred
+    
