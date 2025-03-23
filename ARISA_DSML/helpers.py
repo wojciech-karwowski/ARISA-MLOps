@@ -1,6 +1,7 @@
 from pathlib import Path
 import subprocess
 
+
 def get_active_branch_name(wd="."):
 
     head_dir = Path(wd) / ".git" / "HEAD"
@@ -20,5 +21,6 @@ def get_git_commit_hash():
             stderr=subprocess.DEVNULL
         ).decode("utf-8").strip()
         return commit_hash
+    
     except subprocess.CalledProcessError:
         return None  # Not a git repository or error occurred
