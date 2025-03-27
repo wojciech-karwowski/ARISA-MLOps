@@ -1,6 +1,4 @@
-"""Functions to train model."""
 from pathlib import Path
-
 from catboost import CatBoostClassifier, Pool, cv
 import joblib
 from loguru import logger
@@ -11,7 +9,6 @@ import pandas as pd
 import plotly.graph_objects as go
 from sklearn.metrics import f1_score, log_loss
 from sklearn.model_selection import train_test_split
-
 from ARISA_DSML.config import (
     FIGURES_DIR,
     MODEL_NAME,
