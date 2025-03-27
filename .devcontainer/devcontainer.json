@@ -63,4 +63,3 @@
 			"description": "Name of Mlflow backend db."
 		}
 	}
-}
