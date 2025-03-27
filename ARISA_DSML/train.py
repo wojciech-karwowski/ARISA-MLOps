@@ -296,30 +296,6 @@ if __name__=="__main__":
 
     cv_results = pd.read_csv(cv_output_path)
 
-"""Functions to train model."""
-from pathlib import Path
-
-from catboost import CatBoostClassifier, Pool, cv
-import joblib
-from loguru import logger
-import mlflow
-from mlflow.client import MlflowClient
-import optuna
-import pandas as pd
-import plotly.graph_objects as go
-from sklearn.metrics import f1_score, log_loss
-from sklearn.model_selection import train_test_split
-
-from ARISA_DSML.config import (
-    FIGURES_DIR,
-    MODEL_NAME,
-    MODELS_DIR,
-    PROCESSED_DATA_DIR,
-    categorical,
-    target,
-)
-from ARISA_DSML.helpers import get_git_commit_hash
-
 
 # comment to trigger workflow ver4
 
@@ -470,62 +446,6 @@ def train(X_train:pd.DataFrame, y_train:pd.DataFrame, categorical_indices:list[i
         mlflow.log_figure(fig2, "test-logloss-mean_vs_iterations.png")
 
     return (model_path, model_params_path)
-
-
-def plot_error_scatter(  # noqa: PLR0913
-        df_plot:pd.DataFrame,
-        x:str="iterations",
-        y:str="test-F1-mean",
-        err:str="test-F1-std",
-        name:str="",
-        title:str="",
-        xtitle:str="",
-        ytitle:str="",
-        yaxis_range:list[float]|None=None,
-    )->None:
-    """Plot plotly scatter plots with error areas."""
-    # Create figure
-    fig = go.Figure()
-
-    if not len(name):
-        name = y
-
-    # Add mean performance line
-    fig.add_trace(
-        go.Scatter(
-            x=df_plot[x], y=df_plot[y], mode="lines", name=name, line={"color": "blue"},
-        ),
-    )
-
-    # Add shaded error region
-    fig.add_trace(
-        go.Scatter(
-            x=pd.concat([df_plot[y], df_plot[x][::-1]]),
-            y=pd.concat([df_plot[y]+df_plot[err],
-                         df_plot[y]-df_plot[err]]),
-            fill="toself",
-            fillcolor="rgba(0, 0, 255, 0.2)",
-            line={"color":"rgba(255, 255, 255, 0)"},
-            showlegend=False,
-        ),
-    )
-
-    # Customize layout
-    fig.update_layout(
-        title=title,
-        xaxis_title=xtitle,
-        yaxis_title=ytitle,
-        template="plotly_white",
-    )
-
-    if yaxis_range is not None:
-        fig.update_layout(
-            yaxis={"range": yaxis_range},
-        )
-
-    fig.show()
-    fig.write_image(FIGURES_DIR / f"{y}_vs_{x}.png")
-    return fig
 
 
 def get_or_create_experiment(experiment_name:str):
