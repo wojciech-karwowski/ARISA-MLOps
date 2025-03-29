@@ -3,7 +3,7 @@ name: Predict on new data or with new model
 on: 
   push:
     branches:
-      - main
+      - task02-WWSI-Lesson_3_4
     paths:  # predict when the test set has changed, as well as when the model artifact is updated
       - 'data/raw/test.csv'
       - 'data/processed/test.csv'
