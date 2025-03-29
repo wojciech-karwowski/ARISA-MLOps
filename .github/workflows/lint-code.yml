@@ -5,7 +5,7 @@ name: code checking
 on:
   pull_request:
     branches:
-      - main
+      - task02-WWSI-Lesson_3_4
 
 # run install and lint steps from makefile
 jobs:
