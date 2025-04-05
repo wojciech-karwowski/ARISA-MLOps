@@ -22,6 +22,7 @@ from ARISA_DSML.config import (
 )
 from ARISA_DSML.helpers import get_git_commit_hash
 
+mlflow.set_tracking_url("http://127.0.0.1:5000")
 
 # comment to trigger workflow ver4
 
