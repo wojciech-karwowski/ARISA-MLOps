@@ -3,7 +3,7 @@ name: Preproc data and train model
 on: 
   push:
     branches:
-      - main
+      - task02-WWSI-Lesson_3_4
     paths:  # (re)train when train data changes or when the preproc or train code changes
       - 'data/raw/train.csv'
       - 'data/processed/train.csv'
